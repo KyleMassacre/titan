@@ -5,6 +5,7 @@ namespace App\Http;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use PbbgIo\Titan\Http\Middleware\CharacterAlive;
 use PbbgIo\Titan\Http\Middleware\CharacterLoggedIn as CharacterLoggedInAlias;
+use PbbgIo\Titan\Http\Middleware\PlayableNotBannedMiddleware;
 use PbbgIo\Titan\Http\Middleware\UpdateLastMove;
 
 class Kernel extends HttpKernel
@@ -44,6 +45,16 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+
+        'game' => [
+            \App\Http\Middleware\Authenticate::class,
+            UpdateLastMove::class,
+            CharacterLoggedInAlias::class,
+            CharacterAlive::class,
+            PlayableNotBannedMiddleware::class
+
+
+        ]
     ];
 
     /**
