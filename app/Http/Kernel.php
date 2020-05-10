@@ -88,6 +88,8 @@ class Kernel extends HttpKernel
         'update_last_move' => UpdateLastMove::class,
         'character_logged_in'   =>  CharacterLoggedInAlias::class,
         'character_alive'   => CharacterAlive::class,
+        'choose_admin_theme' => ChooseAdminTheme::class,
+        'choose_game_theme' => ChooseGameTheme::class
     ];
 
     /**
