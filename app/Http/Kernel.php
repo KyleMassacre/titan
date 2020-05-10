@@ -5,6 +5,8 @@ namespace App\Http;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use PbbgIo\Titan\Http\Middleware\CharacterAlive;
 use PbbgIo\Titan\Http\Middleware\CharacterLoggedIn as CharacterLoggedInAlias;
+use PbbgIo\Titan\Http\Middleware\ChooseAdminTheme;
+use PbbgIo\Titan\Http\Middleware\ChooseGameTheme;
 use PbbgIo\Titan\Http\Middleware\UpdateLastMove;
 
 class Kernel extends HttpKernel
@@ -72,6 +74,8 @@ class Kernel extends HttpKernel
         'update_last_move' => UpdateLastMove::class,
         'character_logged_in'   =>  CharacterLoggedInAlias::class,
         'character_alive'   => CharacterAlive::class,
+        'choose_admin_theme' => ChooseAdminTheme::class,
+        'choose_game_theme' => ChooseGameTheme::class
     ];
 
     /**
