@@ -49,6 +49,7 @@ class Kernel extends HttpKernel
         ],
         'game' => [
             \App\Http\Middleware\Authenticate::class,
+            PlayableNotBannedMiddleware::class,
             ChooseGameTheme::class,
             UpdateLastMove::class,
             CharacterLoggedInAlias::class,
