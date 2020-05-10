@@ -7,6 +7,7 @@ use PbbgIo\Titan\Http\Middleware\CharacterAlive;
 use PbbgIo\Titan\Http\Middleware\CharacterLoggedIn as CharacterLoggedInAlias;
 use PbbgIo\Titan\Http\Middleware\ChooseAdminTheme;
 use PbbgIo\Titan\Http\Middleware\ChooseGameTheme;
+use PbbgIo\Titan\Http\Middleware\PlayableNotBannedMiddleware;
 use PbbgIo\Titan\Http\Middleware\UpdateLastMove;
 
 class Kernel extends HttpKernel
@@ -46,6 +47,19 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+        'game' => [
+            \App\Http\Middleware\Authenticate::class,
+            PlayableNotBannedMiddleware::class,
+            ChooseGameTheme::class,
+            UpdateLastMove::class,
+            CharacterLoggedInAlias::class,
+            CharacterAlive::class,
+        ],
+        'admin' => [
+            \App\Http\Middleware\Authenticate::class,
+            ChooseAdminTheme::class,
+            UpdateLastMove::class
+        ]
     ];
 
     /**
